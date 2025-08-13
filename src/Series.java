@@ -124,7 +124,8 @@ public class Series {
         while (true) {
             System.out.print("Age restriction [" + seriesToUpdate.getSeriesAge() + "]: ");
             newAge = scanner.nextLine();
-            if (newAge.isEmpty()) break;
+            if (newAge.isEmpty())
+                break;
             if (isValidAge(newAge)) {
                 seriesToUpdate.setSeriesAge(newAge);
                 break;
@@ -153,9 +154,9 @@ public class Series {
         String id = scanner.nextLine();
         SeriesModel s = getSeriesById(id);
         if (s == null) {
-            System.out.println("---    ---");
+            System.out.println("-------------");
             System.out.println("Series with Series Id: " + id + " was not found!");
-            System.out.println("---    ---");
+            System.out.println("-------------");
             return;
         }
 
@@ -164,9 +165,9 @@ public class Series {
         if (confirm.equalsIgnoreCase("y")) {
             boolean deleted = deleteSeriesById(id);
             if (deleted) {
-                System.out.println("---    ---");
+                System.out.println("----------");
                 System.out.println("Series with Series Id: " + id + " WAS deleted!");
-                System.out.println("---    ---");
+                System.out.println("----------");
             } else {
                 System.out.println("Deletion failed unexpectedly.");
             }
