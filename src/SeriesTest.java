@@ -18,6 +18,16 @@ public class SeriesTest {
     }
 
     @Test
+    public void testAddSeries() {
+        int initialSize = series.seriesList.size();
+        SeriesModel newSeries = new SeriesModel("S002", "Another Series", "15", 12);
+        series.addSeries(newSeries);
+
+        assertEquals(initialSize + 1, series.seriesList.size());
+        assertNotNull(series.getSeriesById("S002"));
+    }
+
+    @Test
     public void testSearchSeries() {
         SeriesModel found = series.getSeriesById(testSeriesId);
         assertNotNull(found);
@@ -97,4 +107,20 @@ public class SeriesTest {
         assertFalse(series.isValidEpisodeCount(null));
         assertFalse(series.isValidEpisodeCount(""));
     }
+
+    @Test
+    public void testAddSeries_duplicateNotAdded() {
+        int initialSize = series.seriesList.size();
+        SeriesModel duplicate = new SeriesModel(testSeriesId, "Duplicate", "14", 5);
+        series.addSeries(duplicate);
+
+        assertEquals(initialSize, series.seriesList.size());
+    }
+
+    @Test
+    public void testSeriesReport_nonEmpty() {
+        assertFalse(series.seriesList.isEmpty(), "Series list should not be empty");
+        assertEquals(1, series.seriesList.size());
+    }
+
 }
